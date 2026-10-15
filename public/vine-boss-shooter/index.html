@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060818">
+<meta name="description" content="婚礼小游戏：60 秒自动射击，躲开弹幕，一起驱赶天狗兽。">
+<title>天狗兽大作战 · 游戏</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='24' fill='%237a2ee0'/><circle cx='32' cy='32' r='10' fill='%23ff9d3c'/></svg>">
+<link rel="stylesheet" href="game.css">
+
+</head>
+<body>
+<canvas id="game" aria-label="天狗兽驱离大作战。使用方向键、WASD 或拖动屏幕移动，自动射击。"></canvas>
+
+<!-- BOSS 立绘素材（隐藏，供 canvas 绘制） -->
+<div style="display:none" aria-hidden="true">
+  <img id="imgBossIdle" src="assets/t_bishaten_idle.png" alt="BOSS待机">
+  <img id="imgBossThrow" src="assets/t_bishaten_throw.png" alt="BOSS投掷">
+  <img id="imgBossCharge" src="assets/t_bishaten_charge.png" alt="BOSS蓄力">
+  <img id="imgBossDefeat" src="assets/t_bishaten_defeat.png" alt="BOSS倒地">
+  <img id="imgPlayer" src="assets/player_hunter.png" alt="猎人">
+</div>
+
+<!-- ===== BOSS 血条 / 计时 / HUD（游戏进行时显示） ===== -->
+<div class="bossbar" id="bossbar" hidden>
+  <div class="bb-label"><span>天狗兽 BOSS</span><span id="hpText">HP 1200 / 1200</span></div>
+  <div class="bb-track"><div class="bb-fill" id="hpFill"></div></div>
+</div>
+<div class="timer-pos" id="timerPos" hidden>时限 <span class="t" id="timerTxt">60</span>s</div>
+<div class="hud" id="hud" hidden>
+  <div>
+    <div class="lives" id="livesTxt" aria-label="剩余 3 条生命"><span>♥</span><span>♥</span><span>♥</span></div>
+    <div class="hpseg" id="hpSeg" aria-label="体力 3 / 3"><i></i><i></i><i></i></div>
+  </div>
+</div>
+<div class="score-pos" id="score-pos" hidden><div class="s" id="scoreTxt">0</div><div class="n" id="nameTxt">宾客</div></div>
+
+<div class="game-controls" id="gameControls" hidden>
+  <button type="button" class="control" id="soundBtn" aria-pressed="false" aria-label="开启音效">音效：关</button>
+  <button type="button" class="control" id="pauseBtn">暂停</button>
+</div>
+<div class="screen hidden pause-screen" id="pauseScreen" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+  <div class="screen-content"><div class="panel">
+    <p class="eyebrow">稍作休息</p>
+    <h1 id="pauseTitle">游戏已暂停</h1>
+    <p class="hint">计时已经停下，准备好后继续。<br>电脑也可按 P / Esc 恢复游戏。</p>
+    <div class="btns"><button class="btn" id="resumeBtn" type="button">继续战斗</button><a class="text-link" href="../">返回大厅</a></div>
+  </div></div>
+</div>
+<!-- ===== 首页 ===== -->
+<main class="screen" id="startScreen"><div class="screen-content">
+  <a class="back-link" href="../">← 返回游戏大厅</a>
+  <p class="eyebrow">小游戏 02 · 60 秒挑战</p>
+  <h1 class="brand">天狗兽驱离大作战</h1>
+  <div class="panel">
+    <div class="row">
+      <label for="pname">怎么称呼你？<span class="optional">（选填）</span></label>
+      <input type="text" id="pname" maxlength="12" placeholder="宾客" autocomplete="nickname" enterkeyhint="go">
+    </div>
+    <div class="row" style="margin-top:18px">
+      <button class="btn" id="startBtn">进入战斗</button>
+    </div>
+    <p class="best-note" id="startBest"></p>
+    <div class="hint">
+      操控：<b>方向键 / WASD</b> 移动，或用<b>鼠标 / 触摸拖动</b><br>
+      自动持续射击 · 击败 BOSS，或在 <b>60 秒</b> 内将其血量压至 <b>20%</b> 及以下（视为驱离）即胜利<br>离开页面会自动暂停 · 音效默认关闭
+    </div>
+  </div>
+</div></main>
+
+<!-- ===== 结算界面 ===== -->
+<section class="screen hidden" id="resultScreen" aria-labelledby="resultHead"><div class="screen-content">
+  <p class="eyebrow">天狗兽驱离大作战</p>
+  <h1 class="result-head" id="resultHead" tabindex="-1">胜利</h1>
+  <div class="result-reason" id="resultReason"></div>
+  <div class="panel">
+    <div class="stat-grid">
+      <div class="stat"><div class="v" id="stScore">0</div><div class="k">战斗得分</div></div>
+      <div class="stat"><div class="v" id="stDmg">0</div><div class="k">造成伤害</div></div>
+      <div class="stat"><div class="v" id="stVine">0</div><div class="k">摧毁藤蔓</div></div>
+    </div>
+    <div class="finalscore">猎人 <span id="stName" style="color:#7df2ff"></span> 最终得分
+      <div class="big" id="finalScore">0</div>
+    </div>
+    <p class="best-note" id="resultBest"></p>
+    <div class="btns">
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+      <a class="btn orange small" href="../">返回大厅</a>
+    </div>
+  </div>
+</div></section>
+
+<script src="../shared/guest.js" defer></script>
+<script src="game.js" defer></script>
+</body>
+</html>

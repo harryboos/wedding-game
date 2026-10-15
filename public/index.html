@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f3eb">
+  <meta name="description" content="挑一个喜欢的小游戏，轻松玩一局。跳一跳与天狗兽大作战，手机和电脑都能玩。">
+  <title>游戏</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="shared/guest.js" defer></script>
+  <script src="home.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="游戏大厅首页"><span class="brand-mark" aria-hidden="true">✳</span> 游戏</a>
+      <span class="header-note"><span class="status-dot" aria-hidden="true"></span> 快乐，随时开场</span>
+    </header>
+
+    <main>
+      <section class="welcome" aria-labelledby="page-title">
+        <div class="welcome-copy">
+          <p class="eyebrow">A LITTLE PLAY, A LOT OF JOY</p>
+          <h1 id="page-title">游戏<span class="title-star" aria-hidden="true">✳</span></h1>
+          <p class="intro">挑一个喜欢的，轻松玩一局。<br class="mobile-break">今天的快乐，也有你的一份。</p>
+        </div>
+        <div class="welcome-seal" aria-hidden="true"><span>HAVE A</span><svg viewBox="0 0 80 70"><path d="M40 59C32 51 9 36 9 22a16 16 0 0 1 31-5 16 16 0 0 1 31 5c0 14-23 29-31 37Z"/><path d="M29 26v6m22-6v6M30 41q10 10 20 0"/></svg><span>GOOD TIME</span></div>
+      </section>
+
+      <div class="section-heading"><h2>选个游戏，开始吧</h2><span>02 款小游戏 / 无需下载</span></div>
+      <section class="game-grid" aria-label="选择小游戏">
+        <a class="game-card jump-card" href="jump-jump/" data-game="jump" aria-labelledby="jump-title">
+          <div class="game-art jump-art" aria-hidden="true">
+            <span class="art-number">01</span><span class="art-label">HOP INTO HAPPINESS</span>
+            <svg class="jump-illustration" viewBox="0 0 520 240" fill="none">
+              <ellipse cx="149" cy="204" rx="70" ry="10" fill="#5a755e" opacity=".1"/><ellipse cx="349" cy="177" rx="71" ry="10" fill="#5a755e" opacity=".1"/>
+              <path d="m76 162 72-33 72 33-72 34Z" fill="#9eb08b"/><path d="m76 162 72 34v26l-72-34Z" fill="#668563"/><path d="m148 196 72-34v26l-72 34Z" fill="#7d996f"/><path d="m86 159 62-28 61 28-61 28Z" fill="#bfcca2"/>
+              <path d="m275 136 72-33 72 33-72 34Z" fill="#9eb08b"/><path d="m275 136 72 34v26l-72-34Z" fill="#668563"/><path d="m347 170 72-34v26l-72 34Z" fill="#7d996f"/><path d="m285 133 62-28 61 28-61 28Z" fill="#bfcca2"/>
+              <ellipse cx="347" cy="135" rx="17" ry="8" stroke="#71856a" stroke-width="2"/>
+              <path d="M173 94Q254-21 340 89" stroke="#6e8663" stroke-width="2" stroke-dasharray="4 8" stroke-linecap="round"/><path d="m332 84 11 11 3-16" stroke="#6e8663" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <g class="jump-pawn"><ellipse cx="149" cy="161" rx="24" ry="8" fill="#5e7454" opacity=".3"/><path d="M132 136h14v23h-14zm20 0h14v23h-14z" fill="#273c4a"/><path d="M129 103q20-10 40 0v36h-40Z" fill="#456875"/><path d="m149 109 3 7 8 1-6 5 1 8-6-4-7 4 2-8-6-5 8-1Z" fill="#f4e6b8"/><path d="m129 107-6 25m46-25 5 25" stroke="#273c4a" stroke-width="11" stroke-linecap="round"/><rect x="134" y="77" width="30" height="28" rx="9" fill="#edc976"/><path d="M129 86V73l8-6 6 4 8-7 8 7 8 2 2 14Z" fill="#273c4a"/><path d="M144 92h1m10 0h1" stroke="#273c4a" stroke-width="3" stroke-linecap="round"/></g>
+              <path d="m387 53 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" fill="#80966c"/><circle cx="102" cy="66" r="3" fill="#9eaf89"/><path d="m431 170 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z" fill="#a7b695"/>
+            </svg>
+            <span class="art-tag">轻巧挑战</span>
+          </div>
+          <div class="game-content">
+            <div class="game-title-row"><h3 id="jump-title">山壁跳一跳</h3><span class="card-arrow" aria-hidden="true">↗</span></div>
+            <p class="game-description">按住蓄力，松手一跃。稳稳落下，就是好身手。</p>
+            <ul class="game-tags" aria-label="游戏特点"><li>单指操作</li><li>3 次机会</li><li>50 个平台</li></ul>
+            <div class="card-bottom"><span class="play-label">开始跳跃 <span aria-hidden="true">→</span></span><span class="best-score" id="jump-best">等你来挑战</span></div>
+          </div>
+        </a>
+
+        <a class="game-card boss-card" href="vine-boss-shooter/" data-game="boss" aria-labelledby="boss-title">
+          <div class="game-art boss-art" aria-hidden="true">
+            <span class="art-number">02</span><span class="art-label">A TINY BIG ADVENTURE</span>
+            <svg class="boss-illustration" viewBox="0 0 520 240" fill="none">
+              <circle cx="283" cy="122" r="95" stroke="#c8bdd7" stroke-dasharray="3 9"/><circle cx="283" cy="122" r="71" stroke="#d8cfe1"/>
+              <path d="m177 69 8 15m-32 19 16 5m190 55 12 11m-9-69 16-4" stroke="#ab9ac1" stroke-width="3" stroke-linecap="round"/>
+              <path d="m245 201 3-10m17 12 2-10m18 13v-10" stroke="#b5804a" stroke-width="5" stroke-linecap="round"/>
+              <path d="m117 151 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z" fill="#b39bc7"/><path d="m397 48 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" fill="#b39bc7"/>
+              <path d="m327 45 8 8-3 11-11 3-8-8 3-11Z" fill="#c2b0d2"/><path d="m182 171 9 8-3 12-12 3-8-9 3-12Z" fill="#c2b0d2"/>
+              <ellipse cx="282" cy="182" rx="51" ry="9" fill="#9f86b7" opacity=".16"/>
+            </svg>
+            <img class="boss-sprite" src="vine-boss-shooter/assets/t_bishaten_idle.png" width="128" height="128" alt="">
+            <img class="hunter-sprite" src="vine-boss-shooter/assets/player_hunter.png" width="56" height="74" alt="">
+            <span class="art-tag">反应挑战</span>
+          </div>
+          <div class="game-content">
+            <div class="game-title-row"><h3 id="boss-title">天狗兽大作战</h3><span class="card-arrow" aria-hidden="true">↗</span></div>
+            <p class="game-description">灵巧走位，躲开弹幕。和天狗兽来一场较量。</p>
+            <ul class="game-tags" aria-label="游戏特点"><li>拖动躲避</li><li>自动射击</li><li>60 秒挑战</li></ul>
+            <div class="card-bottom"><span class="play-label">进入战斗 <span aria-hidden="true">→</span></span><span class="best-score" id="boss-best">等你来挑战</span></div>
+          </div>
+        </a>
+      </section>
+
+      <section class="guest-section" aria-labelledby="guest-title">
+        <div class="guest-copy"><span class="guest-icon" aria-hidden="true">☺</span><div><h2 id="guest-title">留下一个好听的名字</h2><p>选填，两个游戏都会记住你。</p></div></div>
+        <form id="guest-form" class="guest-form">
+          <label class="visually-hidden" for="guest-name">游戏昵称，最多 12 个字</label>
+          <div class="name-control"><input id="guest-name" name="nickname" type="text" maxlength="12" placeholder="怎么称呼你？" autocomplete="nickname"><button type="submit">保存 <span aria-hidden="true">↗</span></button></div>
+          <p id="guest-status" class="guest-status" role="status">不填也可以直接开始</p>
+        </form>
+      </section>
+      <p class="device-note"><svg aria-hidden="true" viewBox="0 0 20 20"><rect x="5" y="2" width="10" height="16" rx="2"/><path d="M9 15h2"/></svg>手机、电脑都能玩<span aria-hidden="true">·</span>成绩仅保存在当前浏览器</p>
+    </main>
+
+    <footer class="site-footer"><span>祝你玩得开心</span><span>GOOD TIMES, TOGETHER <span class="footer-spark" aria-hidden="true">✳</span></span></footer>
+  </div>
+</body>
+</html>

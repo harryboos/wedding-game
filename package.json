@@ -1,0 +1,13 @@
+{
+  "name": "wedding-games",
+  "version": "1.0.0",
+  "private": true,
+  "description": "静态小游戏大厅与两个 Canvas 小游戏",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.*"
+  }
+}

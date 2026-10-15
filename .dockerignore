@@ -1,0 +1,10 @@
+# Only send files needed by the image build.
+**
+!Dockerfile
+!public/
+!public/**
+!scripts/
+!scripts/build.mjs
+!deploy/
+!deploy/nginx.conf
+**/.DS_Store

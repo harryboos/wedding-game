@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>快速穿过山壁吧！</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./game.css">
+</head>
+<body>
+<canvas id="game" aria-label="跳一跳游戏画面，长按画面或空格键蓄力，松开跳跃"></canvas>
+
+<div id="hud" hidden>
+  <div class="col">
+    <div class="scorebox">
+      <div class="score-label">得分</div>
+      <div class="score-num" id="scoreNum">0</div>
+    </div>
+    <div class="streak" id="streakTip"></div>
+    <div class="lives" id="livesBox"></div>
+  </div>
+  <div class="col" style="align-items:flex-end;">
+    <div class="progress" id="progressTip">平台 0 / 50</div>
+  </div>
+</div>
+<nav class="game-tools" aria-label="游戏控制">
+  <a class="tool" href="../" aria-label="返回游戏大厅" title="返回游戏大厅">⌂</a>
+  <button class="tool" id="pauseBtn" type="button" aria-label="暂停游戏" title="暂停游戏" hidden>Ⅱ</button>
+  <button class="tool" id="soundBtn" type="button" aria-label="关闭声音" aria-pressed="false" title="关闭声音">🔊</button>
+</nav>
+<p id="playHint" hidden>长按画面 / 空格键蓄力 · 松开跳跃</p>
+<div id="powerWrap"><div id="powerFill"></div></div>
+
+<!-- 首页 -->
+<div class="overlay" id="homeOv" aria-label="游戏欢迎页">
+  <div class="card">
+    <div class="title">快速穿过山壁吧！</div>
+    <div class="subtitle">长按蓄力 · 松手跳跃</div>
+    <input class="input" id="nameInput" placeholder="昵称（选填）" aria-label="你的昵称（选填）" maxlength="12" autocomplete="off">
+    <button class="btn" id="startBtn" type="button">开始游戏</button>
+    <a class="lobby-link" href="../">← 返回游戏大厅</a>
+    <div class="best" id="homeBest"></div>
+    <div class="rules">
+      <b>玩法：</b>长按画面或空格键蓄力，松开跳跃。<br>
+      落到平台得 <b>1</b> 分；落到中心得 <b>2</b> 分，连续中心跳跃第 n 次得 <b>n+1</b> 分。<br>
+      未落到平台扣 <b>1</b> 条命（共 <b>3</b> 条）。累计越过 <b>50</b> 个平台通关，额外奖励 <b>50</b> 分。
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="pauseOv" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+  <div class="card">
+    <h2 id="pauseTitle">休息一下</h2>
+    <p class="subtitle">游戏已暂停，准备好了再继续。</p>
+    <button class="btn" id="resumeBtn" type="button">继续游戏</button>
+    <a class="lobby-link" href="../">← 返回游戏大厅</a>
+  </div>
+</div>
+
+<!-- 结算 -->
+<div class="overlay hidden" id="resOv" role="dialog" aria-modal="true" aria-label="本局成绩">
+  <div class="card">
+    <div id="resName"></div>
+    <div class="res-big" id="resBig"></div>
+    <div class="res-label" id="resMsg"></div>
+    <div class="statgrid">
+      <div class="stat"><div class="k">最终得分</div><div class="v" id="rScore">0</div></div>
+      <div class="stat"><div class="k">越过平台</div><div class="v" id="rPlat">0</div></div>
+      <div class="stat"><div class="k">最佳连跳</div><div class="v" id="rStreak">0</div></div>
+    </div>
+    <div class="best" id="resBest"></div>
+    <button class="btn" id="againBtn">再来一局</button>
+    <button class="btn ghost" id="homeBtn" type="button">返回游戏首页</button>
+    <a class="lobby-link" href="../">← 返回游戏大厅</a>
+  </div>
+</div>
+
+<script src="../shared/guest.js" defer></script>
+<script src="./game.js" defer></script>
+</body>
+</html>
